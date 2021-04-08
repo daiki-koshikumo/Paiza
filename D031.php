@@ -3,5 +3,5 @@
     // Let's チャレンジ！！
     $inputLine = fgets(STDIN);
     $MinutesToSeconds = $inputLine * 60;
-    echo "$MinutesToSeconds";
+    echo $MinutesToSeconds;
 ?>
