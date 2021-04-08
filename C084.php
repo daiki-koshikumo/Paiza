@@ -8,4 +8,5 @@
     echo "$decoration\n";
     echo "+"."$input_line"."+"."\n";
     echo "$decoration";
+    //てすと
 ?>
