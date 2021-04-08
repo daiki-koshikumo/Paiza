@@ -3,5 +3,5 @@
     // Let's チャレンジ！！
     $inputLine = fgets(STDIN);
     $dayBefore = $inputLine - 1;
-    echo "$dayBefore";
+    echo $dayBefore;
 ?>
