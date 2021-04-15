@@ -5,7 +5,7 @@
     $inputLine = str_replace(PHP_EOL, '', $inputLine);
     $countInputLine = mb_strlen($inputLine);
     $decoration = str_repeat("+", $countInputLine + 2);
-    echo "$decoration\n";
-    echo "+"."$inputLine"."+"."\n";
-    echo "$decoration";
+    echo $decoration."\n";
+    echo "+".$inputLine."+"."\n";
+    echo $decoration;
 ?>
