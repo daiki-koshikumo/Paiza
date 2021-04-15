@@ -1,5 +1,6 @@
 <?php
     $inputLine = fgets(STDIN);
-    $vowelRemove = strtr($inputLine, array('a' => '', 'e' => '', 'i' => '', 'o' => '', 'u' => '', 'A' => '', 'E' => '', 'I' => '', 'O' => '', 'U' => ''));
+    $vowel = array('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
+    $vowelRemove = str_replace($vowel, '', $inputLine);
     echo $vowelRemove;
 ?>
