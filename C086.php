@@ -3,5 +3,5 @@
     // Let's チャレンジ！！
     $inputLine = fgets(STDIN);
     $strtr = strtr($inputLine, array('a' => '', 'e' => '', 'i' => '', 'o' => '', 'u' => '', 'A' => '', 'E' => '', 'I' => '', 'O' => '', 'U' => ''));
-    echo "$strtr";
+    echo $strtr;
 ?>
