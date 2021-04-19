@@ -1,5 +1,8 @@
 <?php
 
+$inputLine = trim(fgets(STDIN));
+$inputLineArray = [];
+
 for ($inputLine = 0; $inputLine = trim(fgets(STDIN)); $inputLine++) {
     $inputLineArray[] = $inputLine;
 }
