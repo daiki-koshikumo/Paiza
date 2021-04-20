@@ -1,25 +1,37 @@
 <?php
 
-$inputLine = trim(fgets(STDIN));
-$inputLineArray = [];
+$inputLine;
+$elevatorStoped = [];
+$elevatorMoved;
 
-for ($inputLine = 0; $inputLine = trim(fgets(STDIN)); $inputLine++) {
-    $inputLineArray[] = $inputLine;
+for($inputLine = 0; $inputLine = trim(fgets(STDIN)); $inputLine++){
+    $elevatorStoped[] = $inputLine;
 }
 
-for($i = 0; $i < count($inputLineArray); $i++){
+for($i = 0; $i < count($elevatorStoped); $i++){
+    $elevatorMoved = $elevatorMoved + movedDifference($i, $elevatorStoped, $goUpDown);
+}
+echo $elevatorMoved;
+
+function movedAfterThirdTime($elevatorStoped, $i){
+    if($elevatorStoped[$i] < $elevatorStoped[$i-1]){
+      $goUpDown = $elevatorStoped[$i-1] - $elevatorStoped[$i];
+    }else{
+      $goUpDown= $elevatorStoped[$i] - $elevatorStoped[$i-1];
+    }
+    return $goUpDown;
+}
+
+function movedDifference($i, $elevatorStoped, $goUpDown){
     if($i === 0){
       $elevatorMoved = 0;
     }elseif($i === 1){
-      $goUpDown = $inputLineArray[1] - 1;
+      $goUpDown = $elevatorStoped[1] - 1;
     }else{
-      if($inputLineArray[$i] < $inputLineArray[$i-1]){
-        $goUpDown = $inputLineArray[$i-1] - $inputLineArray[$i];
-      }else{
-        $goUpDown= $inputLineArray[$i] - $inputLineArray[$i-1];
-      }
+      $goUpDown = movedAfterThirdTime($elevatorStoped, $i);
     }
-    $elevatorMoved = $elevatorMoved + $goUpDown; 
+    return $goUpDown;
 }
-echo $elevatorMoved;
+
 ?>
+
