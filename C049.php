@@ -7,31 +7,30 @@ $elevatorMoved;
 for($inputLine = 0; $inputLine = trim(fgets(STDIN)); $inputLine++){
     $elevatorStoped[] = $inputLine;
 }
+//標準入力値の先頭は必要ないので除去する
+array_shift($elevatorStoped);
 
 for($i = 0; $i < count($elevatorStoped); $i++){
-    $elevatorMoved = $elevatorMoved + movedDifference($i, $elevatorStoped, $goUpDown);
+    $elevatorMoved = $elevatorMoved + movedDifference($i, $elevatorStoped, $elevatorMoved);
 }
 echo $elevatorMoved;
 
-function movedAfterThirdTime($elevatorStoped, $i){
+function movedAfterSecondTime($elevatorStoped, $i){
     if($elevatorStoped[$i] < $elevatorStoped[$i-1]){
-      $goUpDown = $elevatorStoped[$i-1] - $elevatorStoped[$i];
+      $elevatorMoved = $elevatorStoped[$i-1] - $elevatorStoped[$i];
     }else{
-      $goUpDown= $elevatorStoped[$i] - $elevatorStoped[$i-1];
+      $elevatorMoved = $elevatorStoped[$i] - $elevatorStoped[$i-1];
     }
-    return $goUpDown;
+    return $elevatorMoved;
 }
 
-function movedDifference($i, $elevatorStoped, $goUpDown){
+function movedDifference($i, $elevatorStoped, $elevatorMoved){
     if($i === 0){
-      $elevatorMoved = 0;
-    }elseif($i === 1){
-      $goUpDown = $elevatorStoped[1] - 1;
+      $elevatorMoved = $elevatorStoped[0] - 1;
     }else{
-      $goUpDown = movedAfterThirdTime($elevatorStoped, $i);
+      $elevatorMoved = movedAfterSecondTime($elevatorStoped, $i);
     }
-    return $goUpDown;
+    return $elevatorMoved;
 }
 
 ?>
-
