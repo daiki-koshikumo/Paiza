@@ -1,36 +1,27 @@
 <?php
 
-$inputLine;
-$elevatorStoped = [];
-$elevatorMoved;
+$stopedFloors = getInputLine();
 
-for($inputLine = 0; $inputLine = trim(fgets(STDIN)); $inputLine++){
-    $elevatorStoped[] = $inputLine;
+foreach($stopedFloors as $movedNumber => $inputLine){
+    $movedElevatorTotal += movedDifference($movedNumber, $stopedFloors, $movedElevatorTotal);
 }
-//標準入力値の先頭は必要ないので除去する
-array_shift($elevatorStoped);
+echo $movedElevatorTotal;
 
-for($i = 0; $i < count($elevatorStoped); $i++){
-    $elevatorMoved = $elevatorMoved + movedDifference($i, $elevatorStoped, $elevatorMoved);
-}
-echo $elevatorMoved;
-
-function movedAfterSecondTime($elevatorStoped, $i){
-    if($elevatorStoped[$i] < $elevatorStoped[$i-1]){
-      $elevatorMoved = $elevatorStoped[$i-1] - $elevatorStoped[$i];
-    }else{
-      $elevatorMoved = $elevatorStoped[$i] - $elevatorStoped[$i-1];
+function getInputLine(){
+    for($inputLine = 0; $inputLine = trim(fgets(STDIN)); $inputLine++){
+        $stopedFloors[] = $inputLine;
     }
-    return $elevatorMoved;
+    //標準入力値の先頭は必要ないので除去する
+    array_shift($stopedFloors);
+    return $stopedFloors;
 }
 
-function movedDifference($i, $elevatorStoped, $elevatorMoved){
-    if($i === 0){
-      $elevatorMoved = $elevatorStoped[0] - 1;
-    }else{
-      $elevatorMoved = movedAfterSecondTime($elevatorStoped, $i);
-    }
-    return $elevatorMoved;
+function movedFirstTime($movedElevatorTotal,$stopedFloors, $movedNumber){
+    $movedElevatorTotal = $stopedFloors[$movedNumber] - 1;
+    return $movedElevatorTotal;
 }
 
-?>
+function movedDifference($movedNumber, $stopedFloors, $movedElevatorTotal){
+    $movedElevatorTotal = $movedNumber === 0? movedFirstTime($movedElevatorTotal, $stopedFloors, $movedNumber): abs($stopedFloors[$movedNumber] - $stopedFloors[$movedNumber-1]);
+    return $movedElevatorTotal;
+}
